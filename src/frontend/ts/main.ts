@@ -1,67 +1,35 @@
+class Main implements EventListenerObject{
 
-function SayHello(){
-    let current_value = document.getElementById("textarea_1") as HTMLInputElement;
-    let new_value = "Hello world!!!" + "\n" + current_value.value;
-    document.getElementById("textarea_1").innerHTML = new_value;
+    public usuarios: Array<Usuario>;
+
+    constructor(){
+        this.usuarios = new Array<Usuario>();
+    }
+
+    private buscarPersonas(): void{
+
+        let usuario1:Usuario = new Usuario("Matias", "Admin", "1234");
+        let usuario2:Usuario = new Usuario("Brian", "Admin", "1234");
+
+        this.usuarios.push(usuario1);
+        this.usuarios.push(usuario2);
+
+        for (let u of this.usuarios){
+            console.log(u.mostrar(), this.usuarios.length);
+            document.getElementById("textarea_1").innerHTML += u.mostrar() + "\n";
+        }
+    }
+    handleEvent(object: Event): void {
+        this.buscarPersonas();
+    }
 }
 
-
-
-let nombreVariable: string = "Valor";
-console.log(nombreVariable + 5 + "ads");
-let otraVariable: number;
-otraVariable = 123;
-console.log(otraVariable + 5);
-
-let verdadero:boolean = true;
-console.log(verdadero);
-
-if (otraVariable > 124) {
-    console.log("Verdadero");
-} else {
-    console.log("es Falso");
-}
-
-let lista: Array<string>;
-lista = new Array<string>();
-
-lista.push("nueva");
-lista.push("Matías");
-lista.push("Otra");
-
-for (let i in lista){
-    console.log(lista[i]);
-}
-
-console.log(lista.length);
-
-function sumar(x: number, y: number): number {
-    return x + y;
-}
-
-let resultado = sumar(5, 2);
-console.log(resultado);
-
-function restar(x: number, y: number): number {
-    return x - y;
-}
-
-function ejecutar(numero1: number, numero2: number, func: any){
-    console.log(func(numero1, numero2));
-    alert(func(numero1, numero2));
-}
-
-function inicio(){
-    ejecutar(5, 2, sumar);
-    ejecutar(5, 2, restar);
-}
-
-window.addEventListener("load", inicio);
 
 window.addEventListener("load", () => {
-    SayHello();
-    SayHello();
-    SayHello();
-    SayHello();
-    console.log(sumar(2, 3));
+
+    let main: Main = new Main();
+    let boton = document.getElementById("btnSaludar");
+
+    boton.addEventListener("click", main);
+
 })
