@@ -4,15 +4,15 @@ class Usuario extends Persona {
     private password: string;
 
 
-    constructor(nombre: string, rol: string, password: string){
+    constructor(nombre: string, rol: string, password?: string){
         super();
-        super.nombre = nombre;
+        this.nombre = nombre;
         this.rol = rol;
         this.password = password;
     }
 
 
-    mostrar(): string {
+    public mostrar(): string {
         return `${this.nombre} - ${this.rol}`;
     }
 }

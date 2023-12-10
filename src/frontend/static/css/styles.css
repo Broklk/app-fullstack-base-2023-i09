@@ -8,3 +8,16 @@ body {
 main {
     flex: 1 0 auto;
 }
+
+.textError {
+    font-size: x-small;
+    font-style: italic;
+    color: red;
+}
+
+.textCorrect {
+    font-size: x-small;
+    font-style: italic;
+    color: green;
+}
+
