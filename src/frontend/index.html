@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html>
+    <html lang="es">
         <head>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <link type="text/css" rel="stylesheet" href="./static/css/materialize.min.css"  media="screen,projection"/>
@@ -8,6 +8,7 @@
             <script type="text/javascript" src="js/personas.js"></script>
             <script type="text/javascript" src="js/usuario.js"></script>
             <script type="text/javascript" src="js/main.js"></script>
+            <script type="text/javascript" src="js/device.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </head>
     <body>
@@ -23,18 +24,26 @@
                 </div>
             </nav>
         </header>
+
         <main>
             <!-- Page Body -->
             <div class="container">
-                <div>
-                    <h1>Carga de usuario</h1>
-                    <label for="iNombre">Nombre de Usuario</label>
-                    <input type="text" id="iNombre" value="" placeholder="Ej. Matias Lazo"/>
-                    <label for="iPassword">Contraseña</label>
-                    <input type="password" id="iPassword" value="" placeholder="Ingrese contraseña"/>
-                    <p id="pInfo"></p>
-                    <button class="btn" id="btnGuardar">Guardar</button>
+                <div class="row">
+                    <div class="col s12 m6 16">
+                        <h3>Lista de Devices</h3>
+                        <textarea id="textarea_2" class="materialize-textarea" style="height: 150px;" readonly></textarea>
+                    </div>
+                    <div class="col s12 m6 16">
+                        <h3>Carga de usuario</h3>
+                        <label for="iNombre">Nombre de Usuario</label>
+                        <input type="text" id="iNombre" value="" placeholder="Ej. Matias Lazo"/>
+                        <label for="iPassword">Contraseña</label>
+                        <input type="password" id="iPassword" value="" placeholder="Ingrese contraseña"/>
+                        <p id="pInfo"></p>
+                        <button class="btn" id="btnGuardar">Guardar</button>
+                    </div>
                 </div>
+
                 <br/>
                 <h3>Smart Home Web Client!</h3>
                 <br/>
@@ -48,6 +57,7 @@
                 </div>
             </div>
         </main>
+
 		<!-- Page Footer -->
         <footer class="page-footer" style="background-color:#124580">
             <div class="container">

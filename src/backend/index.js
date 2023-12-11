@@ -15,19 +15,26 @@ app.use(express.static('/home/node/app/static/'));
 
 app.get('/devices/', function(req, res, next) {
     devices = [
-        { 
-            'id': 1, 
-            'name': 'Lampara 1', 
-            'description': 'Luz living', 
-            'state': 0, 
-            'type': 1, 
+        {
+            'id': 1,
+            'name': 'Lampara 1',
+            'description': 'Luz living',
+            'state': 0,
+            'type': 1,
         },
-        { 
-            'id': 2, 
-            'name': 'Ventilador 1', 
-            'description': 'Ventilador Habitacion', 
-            'state': 1, 
-            'type': 2, 
+        {
+            'id': 2,
+            'name': 'Ventilador 1',
+            'description': 'Ventilador Habitacion',
+            'state': 1,
+            'type': 2,
+        },
+        {
+            'id': 3,
+            'name': 'TV',
+            'description': 'TV Led Habitacion',
+            'state': 0,
+            'type': 3,
         },
     ]
     res.send(JSON.stringify(devices)).status(200);

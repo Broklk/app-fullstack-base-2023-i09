@@ -16,6 +16,25 @@ class Main implements EventListenerObject{
         }
     }
 
+    private buscarDevices(): void{
+        let xmlRequest = new XMLHttpRequest();
+        let list = document.getElementById("textarea_2");
+        xmlRequest.onreadystatechange = () => {
+            if (xmlRequest.readyState === 4 && xmlRequest.status === 200) {
+                console.log(xmlRequest.responseText);
+                let datos:Array<Devices> = JSON.parse(xmlRequest.responseText);
+                for(let d of datos){
+                    console.log(d.name);
+                    list.innerHTML += d.name + "\n";
+                }
+            } else{
+                console.log("No se encontraron datos");
+            }
+        };
+        xmlRequest.open("GET", "http://localhost:8000/devices/", true);
+        xmlRequest.send();
+    }
+
     private cargarUsuario(): void{
         let iNombre = <HTMLInputElement>document.getElementById("iNombre");
         let iPassword = <HTMLInputElement>document.getElementById("iPassword");
@@ -39,6 +58,7 @@ class Main implements EventListenerObject{
             this.cargarUsuario();
         } else if (elemento.id === "btnListar"){
             this.buscarPersonas();
+            this.buscarDevices();
         }
     }
 }
