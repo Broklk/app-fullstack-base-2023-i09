@@ -1,77 +1,101 @@
 
+var M;
 
 class Main implements EventListenerObject{
 
-    public usuarios: Array<Usuario>;
+    public devices: Array<Devices>;
 
     constructor(){
-        this.usuarios = new Array<Usuario>();
+        this.devices = new Array<Devices>();
     }
 
-    private buscarPersonas(): void{
-        document.getElementById("textarea_1").innerHTML = "";
-        for (let u of this.usuarios){
-            console.log(u.mostrar(), this.usuarios.length);
-            document.getElementById("textarea_1").innerHTML += u.mostrar() + "\n";
+
+
+    private agregarDispositivo(): void{
+        let iName = <HTMLInputElement>document.getElementById("iName");
+        let iDescription = <HTMLInputElement>document.getElementById("iDescription");
+        let iType = <HTMLInputElement>document.getElementById("iType");
+
+        let xmlRequest = new XMLHttpRequest();
+        xmlRequest.open("POST", "http://localhost:8000/devices", true);
+        xmlRequest.setRequestHeader("Content-Type", "application/json");
+        xmlRequest.send(JSON.stringify({
+            name: iName.value,
+            description: iDescription.value,
+            state: false,
+            type: iType.value,
+        }));
+    }
+
+    private eliminarDispositivo(): void{
+
+    }
+
+    handleEvent(object: Event): void {
+        let elemento = <HTMLInputElement>object.target;
+        console.log(elemento.id);
+        if (elemento.id === "btEliminarDispositivo"){
+            this.eliminarDispositivo();
+        }else if (elemento.id === "btnAgregarDispositivo"){
+            this.agregarDispositivo();
         }
     }
+}
 
-    private buscarDevices(): void{
+function mostrarDispositivos(): void{
         let xmlRequest = new XMLHttpRequest();
-        let list = document.getElementById("textarea_2");
         xmlRequest.onreadystatechange = () => {
             if (xmlRequest.readyState === 4 && xmlRequest.status === 200) {
                 console.log(xmlRequest.responseText);
                 let datos:Array<Devices> = JSON.parse(xmlRequest.responseText);
+                let list = document.getElementById("ulDevices");
+                let check = "";
+                list.innerHTML = "";
                 for(let d of datos){
                     console.log(d.name);
-                    list.innerHTML += d.name + "\n";
+                    if (d.state == true){
+                        check = "checked"
+                    } else {
+                        check = ""
+                    }
+                    list.innerHTML+=`<li class="collection-item avatar">
+                                    <img src="images/yuna.jpg" alt="" class="circle">
+                                    <span class="title">${d.name}</span>
+                                    <p>${d.description}
+                                    </p>
+                                    <a href="#!" class="secondary-content">
+                                    <div class="switch">
+                                    <label>
+                                    Off
+                                    <input type="checkbox" ${check}>
+                                    <span class="lever"></span>
+                                    On
+                                    </label>
+                                    </div>
+                                    </a>
+                                    </li>`;
                 }
             } else{
                 console.log("No se encontraron datos");
             }
-        };
+        }
         xmlRequest.open("GET", "http://localhost:8000/devices/", true);
         xmlRequest.send();
-    }
-
-    private cargarUsuario(): void{
-        let iNombre = <HTMLInputElement>document.getElementById("iNombre");
-        let iPassword = <HTMLInputElement>document.getElementById("iPassword");
-        let pInfo = document.getElementById("pInfo");
-
-        if(iNombre.value.length > 3 && iPassword.value.length > 3){
-            this.usuarios.push(new Usuario(iNombre.value, "user", iPassword.value));
-            pInfo.className = "textCorrect";
-            pInfo.innerHTML = "Usuario Cargado Correctamente";
-        } else {
-            pInfo.className = "textError";
-            pInfo.innerHTML = "Usuario o Contraseña incorrectos";
-        }
-        iNombre.value = "";
-        iPassword.value = "";
-    }
-    handleEvent(object: Event): void {
-        let elemento = <HTMLInputElement>object.target;
-        console.log(elemento.id);
-        if (elemento.id === "btnGuardar"){
-            this.cargarUsuario();
-        } else if (elemento.id === "btnListar"){
-            this.buscarPersonas();
-            this.buscarDevices();
-        }
-    }
 }
 
 
 window.addEventListener("load", () => {
 
+    var elemsModal = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elemsModal, "");
+
+    mostrarDispositivos();
+
     let main: Main = new Main();
-    let boton = document.getElementById("btnListar");
+    let botonDispositivo = document.getElementById("btnAgregarDispositivo");
+    botonDispositivo.addEventListener("click", main);
 
-    boton.addEventListener("click", main);
-
-    let botonGuardar = document.getElementById("btnGuardar");
-    botonGuardar.addEventListener("click", main);
+    let eliminarDispositivo = document.getElementById("btnEliminarDispositivo");
+    eliminarDispositivo.addEventListener("click", main);
 
 })
