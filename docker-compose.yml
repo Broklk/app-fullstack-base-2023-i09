@@ -22,7 +22,7 @@ services:
 
     mysql-admin:
         image:                   phpmyadmin/phpmyadmin
-        environment: 
+        environment:
             PMA_HOST:            mysql-server
             PMA_PORT:            3306
             MYSQL_ROOT_PASSWORD: userpass
@@ -42,7 +42,7 @@ services:
             -                    app-fullstack-net
         depends_on:
             -                    mysql-server
-        ports: 
+        ports:
             -                    "8000:3000"
         command:                 nodemon /home/node/app/src/index.js
 

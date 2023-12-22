@@ -34,22 +34,18 @@
                 <h6>Gestiona tus dispositivos</h6>
                 <br/>
                 <div class="row">
-                    <!-- Dispositivos -->
+                    <!-- Listar Dispositivos -->
                     <div class="col s12 m12 16">
-                        <h4>Dispositivos</h4>
+                        <h4>Dispositivos
+                        <a class="btn-floating btn-medium waves-effect waves-light waves-green modal-trigger" href="#modalAgregar"><i class="material-icons">add</i></a>
+                        </h4>
                         <ul class="collection" id="ulDevices">
                         </ul>
                     </div>
-                    <div class="col s4 m4 l2 xl2">
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">AGREGAR DISPOSITIVO</a>
-                    </div>
-                    <div class="col s4 m4 l2 xl2">
-                        <a class="waves-effect waves-light btn modal-trigger" href="#modal3">ELIMINAR DISPOSITIVO</a>
-                    </div>
                 </div>
 
-                <!-- Agregar Dispositivo -->
-                <div id="modal1" class="modal">
+                <!-- Modal para Agregar Dispositivo -->
+                <div id="modalAgregar" class="modal">
                     <div class="modal-content">
                         <h3>Agrega dispositivo</h3>
                         <label for="iName">Nombre</label>
@@ -58,12 +54,25 @@
                         <input type="text" id="iDescription" value="" placeholder="Ej. TV Habitación"/>
                         <label for="iType">Tipo</label>
                         <input type="text" id="iType" value="" placeholder="Ej. 1"/>
+                        <p class="grey-text text-small">Tipo 1: Lamparas, Luces</p>
+                        <p class="grey-text text-small">Tipo 2: Aire Acondicionado, ventilador</p>
+                        <p class="grey-text text-small">Tipo 3: TV, Smart TV</p>
+                        <p class="grey-text text-small">Tipo 4: Cortinas, Ventanas</p>
+                        <p class="grey-text text-small">Tipo 5: Lavadoras, secadoras</p>
+                        <p class="grey-text text-small">Tipo 6: Cámaras de Seguridad</p>
+                        <p class="grey-text text-small">Tipo 7: Calefacción</p>
+                        <p class="grey-text text-small">Tipo 0: Otros Dispositivos</p>
                     </div>
                     <div class="modal-footer">
                         <button class="btn modal-close waves-effect waves-green" id="btnAgregarDispositivo">Guardar</button>
-                        <button class="btn modal-close waves-effect waves-green" id="btnCancelar">Cancelar</button>
+                        <button class="btn modal-close waves-effect waves-green">Cancelar</button>
                     </div>
                 </div>
+
+                <!-- Modals de cada dispositivo -->
+                <div id="modalsItems">
+                </div>
+
             </div>
         </main>
 
@@ -73,7 +82,7 @@
                 <div class="row">
                     <div class="col l6 s6">
                         <h5 class="white-text">Smart Home</h5>
-                        <p class="grey-text text-lighten-4">Copyright ### - 2021</p>
+                        <p class="grey-text text-lighten-4">Copyright 2021 - 2023</p>
                     </div>
                     <div class="col l6 s6">
                         <h5 class="white-text right-align">Contact</h5>
